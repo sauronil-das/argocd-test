@@ -1,27 +1,26 @@
 apiVersion: argoproj.io/v1aplha1
-kind: Application
+kind: AppProject
 metadata:
     name: myapp-argo-application
     namespace: argocd
 spec: 
-    project: default
+  project: default
 
-    source:
-        repoURL: https://github.com/sauronil-das/argocd-test.git
-        targetRevision: HEAD
-        path: dev
+  source:
+    repoURL: https://github.com/sauronil-das/argocd-test.git
+    targetRevision: HEAD
+    path: dev
 
-    destination:
-        server: https://kubernetes.default.svc
-
-        namespace: myapp
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myapp
 
 
     syncPolicy:
         syncOptions:
-        - CreateNamespace=true
+            - CreateNamespace=true
 
         automated: 
-            selfHeal: true
-            prune: true
+        selfHeal: true
+        prune: true
 
