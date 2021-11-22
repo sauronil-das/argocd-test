@@ -1,0 +1,21 @@
+# Provide Permission for ArgoCD
+kubectl create clusterrolebinding sauronil-cluster-admin-binding --clusterrole=cluster-admin --user=sauronil@breu.io
+
+
+# Edit Service to change to type to loadbalancer
+
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+
+
+
+## Login to argocd server pod
+
+kubectl exec -it <argocd-server-xxxfdfdsfdfs> -n argocd -- bash
+
+##Change the password using the comand
+
+argocd login <ARGOCD_SERVER> # Service LoadBalancer IP of argocd-server-service
+argocd account update-password
+
+## Register a cluster to Deploy Apps to
+argocd cluster add
